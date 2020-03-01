@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
 using MovieRank.Contracts;
-using MovieRank.Services;
 using Newtonsoft.Json;
 
 namespace MovieRank.Data
@@ -33,7 +30,7 @@ namespace MovieRank.Data
                         Actors = movie.Actors,
                         Description = movie.Description,
                         Ranking = movie.Ranking,
-                    }, CancellationToken.None).Wait();
+                    }, CancellationToken.None).RunSynchronously();
                 }
             }
         }

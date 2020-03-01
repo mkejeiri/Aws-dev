@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieRank.Contracts;
-using MovieRank.Services;
 
 namespace MovieRank.Controllers
 {
@@ -71,18 +70,20 @@ namespace MovieRank.Controllers
             await _movieRankService.AddMovie(userId, movieRankRequest, CancellationToken.None);
             return Ok();
         }
+
         /// <summary>
         /// Update Movie
         /// </summary>
         /// <param name="userId"></param>
-        /// <param name="movieUpdateRequest"></param>
+        /// <param name="movieName"></param>
+        /// <param name="movieUpdateRankingRequest"></param>
         /// <returns></returns>
-        [HttpPatch("{userId}")]
-        [ProducesResponseType(typeof(MovieResponse), StatusCodes.Status200OK)]
+        [HttpPatch("{userId}/{movieName}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateMovie([FromRoute]int userId, [FromBody] MovieUpdateRequest movieUpdateRequest)
+        public async Task<IActionResult> UpdateMovie([FromRoute]int userId, [FromRoute]string movieName, [FromBody] MovieUpdateRankingRequest movieUpdateRankingRequest)
         {
-            await _movieRankService.UpdateMovie(userId, movieUpdateRequest, CancellationToken.None);
+            await _movieRankService.UpdateMovie(userId, movieName, movieUpdateRankingRequest, CancellationToken.None);
             return Ok();
         }
 

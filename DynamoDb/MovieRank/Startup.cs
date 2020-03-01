@@ -30,12 +30,15 @@ namespace MovieRank
                 {
                     Region = RegionEndpoint.GetBySystemName("eu-central-1")
                 });
-            //MovieRankService : IMovieRankService
+         
             services.AddScoped<IMovieRankService, MovieRankService>();
-            services.AddScoped<IMovieRankRepository, NoDocumentModelRepository>();
-            services.AddScoped<IMapper, Mapper>();
-            //services.AddScoped<IDynamoDBContext, DynamoDBContext>();
-            services.AddTransient<Seeder>();
+
+            //services.AddScoped<IMovieRankRepository, NoDocumentModelRepository>();
+            //services.AddScoped<IMapper, Mapper>();
+
+            services.AddScoped<IDocumentMapper, DocumentMapper>();
+            services.AddScoped<IMovieRankRepository, DocumentModelRepository>();
+
 
             services.AddSwaggerGen(c =>
             {
@@ -69,6 +72,8 @@ namespace MovieRank
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddTransient<Seeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -22,16 +22,24 @@ namespace MovieRank.Services
             await _movieRankRepository.AddMovie(userId, movieRankRequest, cancellationToken);
         }
 
-        public async Task UpdateMovie(int userId, MovieUpdateRequest movieUpdateRequest, CancellationToken cancellationToken)
+        public async Task UpdateMovie(int userId, string movieName, MovieUpdateRankingRequest movieUpdateRankingRequest,
+            CancellationToken cancellationToken)
         {
-            var movieResponse = await _movieRankRepository.GetMovie(userId, movieUpdateRequest.MovieName, cancellationToken);
+            var movieResponse = await _movieRankRepository.GetMovie(userId, movieName, cancellationToken);
             if (movieResponse == null)
             {
-                throw new InvalidOperationException($"Invalid userId/MovieName : {userId}/{movieUpdateRequest.MovieName}");
+                throw new InvalidOperationException($"Invalid userId/MovieName : {userId}/{movieName}");
             }
 
+            var movieUpdateRequest = new MovieUpdateRequest
+            {
+                Ranking = movieUpdateRankingRequest.Ranking,
+                MovieName = movieName
+            };
             await _movieRankRepository.UpdateMovie(userId, movieUpdateRequest, movieResponse, cancellationToken);
         }
+
+       
         
         public async Task<IEnumerable<MovieResponse>> GetAllItemsFromDatabase(CancellationToken cancellationToken)
         {
