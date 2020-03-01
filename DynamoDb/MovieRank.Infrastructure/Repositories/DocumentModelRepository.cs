@@ -5,7 +5,15 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using MovieRank.Contracts;
 using MovieRank.Infrastructure.Mappers;
-
+/*
+ The document model:
+ - wrapper around the low-level model. 
+ - The document model's primary classes are the table and document class. 
+ - We use the table class to put, get, and delete items, 
+ - we are able to use the scan and query methods within this model.  
+ - requires us to write a little more code than the Object Persistence model
+ - Unlike with the Object Persistence model, we are unable to create, update, and delete DynamoDB tables.
+ */
 namespace MovieRank.Infrastructure.Repositories
 {
     public  class DocumentModelRepository : IMovieRankRepository

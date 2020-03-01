@@ -8,17 +8,23 @@ using Amazon.DynamoDBv2.DocumentModel;
 using MovieRank.Contracts;
 using MovieRank.Infrastructure.Mappers;
 using MovieRank.Infrastructure.Models;
-
+/*
+     Persistence object model 
+    - Wrapper around the low level model
+    - simple
+    - map client class to DynamoDB table
+    - missing feature create, delete, update dynamoDb table
+ */
 namespace MovieRank.Infrastructure.Repositories
 {
-    public class NoDocumentModelRepository : IMovieRankRepository
+    public class PersistenceObjectModelRepository : IMovieRankRepository
     {
         private const string PropertyName = "MovieName"; //Case insensitive!
         private const string IndexName = "MovieName-index"; 
         private readonly IMapper _mapper;
         private readonly IDynamoDBContext _dynamoDbContext;
 
-        public NoDocumentModelRepository(IAmazonDynamoDB amazonDynamoDbClient, IMapper mapper)
+        public PersistenceObjectModelRepository(IAmazonDynamoDB amazonDynamoDbClient, IMapper mapper)
         {
             _mapper = mapper;
             _dynamoDbContext = new DynamoDBContext(amazonDynamoDbClient);
