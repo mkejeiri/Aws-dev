@@ -1,0 +1,17 @@
+//Copy past into the editor of https://www.json-generator.com/
+[
+    '{{repeat(5, 20)}}',
+    {
+        userId: '{{integer(4, 8)}}',
+        movieName: '{{company()}} {{company()}} {{company()}} {{company()}}',
+        description: '{{lorem(1, "paragraphs")}}',
+        actors: [
+            '{{firstName()}} {{surname()}}',
+            '{{firstName()}} {{surname()}}',
+            '{{firstName()}} {{surname()}}'
+        ],
+        ranking: '{{integer(4, 8)}}',
+        rankedDateTime: '{{date().toISOString()}}'
+
+    }
+]
