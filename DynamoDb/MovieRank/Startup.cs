@@ -13,6 +13,7 @@ using MovieRank.Data;
 using MovieRank.Infrastructure.Mappers;
 using MovieRank.Infrastructure.Repositories;
 using MovieRank.Services;
+using ISeederService = MovieRank.Data.ISeederService;
 
 namespace MovieRank
 {
@@ -30,15 +31,29 @@ namespace MovieRank
                 {
                     Region = RegionEndpoint.GetBySystemName("eu-central-1")
                 });
-         
+
+            //Operation over RankMovie table
             services.AddScoped<IMovieRankService, MovieRankService>();
 
-            //services.AddScoped<IMovieRankRepository, NoDocumentModelRepository>();
+            //DDL Operations Creation and deletion of the table
+            services.AddTransient<ISetupService, SetupService>();
+
+            
+            //1- Persistence Object Model Approach
+            //services.AddScoped<IMovieRankRepository, PersistenceObjectModelRepository>();
             //services.AddScoped<IMapper, Mapper>();
 
-            services.AddScoped<IDocumentMapper, DocumentMapper>();
-            services.AddScoped<IMovieRankRepository, DocumentModelRepository>();
 
+            //2- Document Model Approach
+            //services.AddScoped<IDocumentMapper, DocumentMapper>();
+            //services.AddScoped<IMovieRankRepository, DocumentModelRepository>();
+
+            //3- Low Level Model Approach
+            services.AddScoped<ILowLevelModelMapper, LowLevelModelMapper>();
+            services.AddScoped<IMovieRankRepository, LowLevelModelRepository>();
+
+            //Create and delete table
+            services.AddScoped<IDDLMovieRankRepository, DDLMovieRankRepository>();
 
             services.AddSwaggerGen(c =>
             {
@@ -73,6 +88,7 @@ namespace MovieRank
                 c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddTransient<ISeederService, SeederService>();
             services.AddTransient<Seeder>();
         }
 

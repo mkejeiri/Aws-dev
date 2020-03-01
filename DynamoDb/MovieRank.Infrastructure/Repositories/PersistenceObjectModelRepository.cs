@@ -21,10 +21,10 @@ namespace MovieRank.Infrastructure.Repositories
     {
         private const string PropertyName = "MovieName"; //Case insensitive!
         private const string IndexName = "MovieName-index"; 
-        private readonly IMapper _mapper;
+        private readonly IPersistenceObjectModelMapper _mapper;
         private readonly IDynamoDBContext _dynamoDbContext;
 
-        public PersistenceObjectModelRepository(IAmazonDynamoDB amazonDynamoDbClient, IMapper mapper)
+        public PersistenceObjectModelRepository(IAmazonDynamoDB amazonDynamoDbClient, IPersistenceObjectModelMapper mapper)
         {
             _mapper = mapper;
             _dynamoDbContext = new DynamoDBContext(amazonDynamoDbClient);

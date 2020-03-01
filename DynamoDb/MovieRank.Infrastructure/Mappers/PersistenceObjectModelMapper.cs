@@ -6,7 +6,7 @@ using MovieRank.Infrastructure.Models;
 
 namespace MovieRank.Infrastructure.Mappers
 {
-    public class Mapper : IMapper
+    public class PersistenceObjectModelMapper : IPersistenceObjectModelMapper
     {
         public IEnumerable<MovieResponse> ToMovieContract(IEnumerable<MovieDb> getAllItems)
         {
