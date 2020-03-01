@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Amazon.DynamoDBv2.DataModel;
 
-namespace MovieRank.Libs.Models
+namespace MovieRank.Infrastructure.Models
 {
     [DynamoDBTable("MovieRank")]
     public class MovieDb

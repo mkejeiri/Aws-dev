@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2003
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRank", "MovieRank\MovieRank.csproj", "{4C8F326F-5394-4A53-B4B3-9DEAFDF65EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRank", "MovieRank\MovieRank.csproj", "{4C8F326F-5394-4A53-B4B3-9DEAFDF65EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRank.Libs", "MovieRank.Libs\MovieRank.Libs.csproj", "{6D262B5F-B13D-410D-9725-5A73E85FFE54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRank.Infrastructure", "MovieRank.Libs\MovieRank.Infrastructure.csproj", "{6D262B5F-B13D-410D-9725-5A73E85FFE54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRank.Contracts", "MovieRank.Contracts\MovieRank.Contracts.csproj", "{8B11B50A-61CD-4FE7-8C31-3C0C463A9080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRank.Contracts", "MovieRank.Contracts\MovieRank.Contracts.csproj", "{8B11B50A-61CD-4FE7-8C31-3C0C463A9080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

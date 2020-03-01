@@ -31,7 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieRank.Contracts\MovieRank.Contracts.csproj" />
-    <ProjectReference Include="..\MovieRank.Libs\MovieRank.Libs.csproj" />
+    <ProjectReference Include="..\MovieRank.Libs\MovieRank.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

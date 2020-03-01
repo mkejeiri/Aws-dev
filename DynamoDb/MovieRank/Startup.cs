@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using MovieRank.Contracts;
 using MovieRank.Data;
-using MovieRank.Libs.Mappers;
-using MovieRank.Libs.Repositories;
+using MovieRank.Infrastructure.Mappers;
+using MovieRank.Infrastructure.Repositories;
 using MovieRank.Services;
 
 namespace MovieRank

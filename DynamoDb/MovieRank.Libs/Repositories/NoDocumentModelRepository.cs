@@ -6,13 +6,15 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
 using MovieRank.Contracts;
-using MovieRank.Libs.Mappers;
-using MovieRank.Libs.Models;
+using MovieRank.Infrastructure.Mappers;
+using MovieRank.Infrastructure.Models;
 
-namespace MovieRank.Libs.Repositories
+namespace MovieRank.Infrastructure.Repositories
 {
     public class NoDocumentModelRepository : IMovieRankRepository
     {
+        private const string PropertyName = "MovieName"; //Case insensitive!
+        private const string IndexName = "MovieName-index"; 
         private readonly IMapper _mapper;
         private readonly IDynamoDBContext _dynamoDbContext;
 
@@ -21,19 +23,19 @@ namespace MovieRank.Libs.Repositories
             _mapper = mapper;
             _dynamoDbContext = new DynamoDBContext(amazonDynamoDbClient);
         }
-      
+
         public async Task<List<MovieResponse>> GetUsersRankedMoviesByMovieTitle(int userId, string movieName, CancellationToken cancellationToken)
         {
             var config = new DynamoDBOperationConfig
             {
                 QueryFilter = new List<ScanCondition>
                      {
-                         new ScanCondition(propertyName:"movieName", op:ScanOperator.Contains, movieName),
-                         new ScanCondition("MovieName", ScanOperator.BeginsWith, movieName)
+                         new ScanCondition(propertyName:PropertyName, op:ScanOperator.Contains, movieName),
+                         new ScanCondition(PropertyName, ScanOperator.BeginsWith, movieName)
                      },
                 ConditionalOperator = ConditionalOperatorValues.Or
             };
-           return _mapper.ToMovieContract(await _dynamoDbContext.QueryAsync<MovieDb>(userId, config).GetRemainingAsync(cancellationToken)).ToList();
+            return _mapper.ToMovieContract(await _dynamoDbContext.QueryAsync<MovieDb>(userId, config).GetRemainingAsync(cancellationToken)).ToList();
         }
 
         public async Task AddMovie(int userId, MovieRankRequest movieRankRequest, CancellationToken cancellationToken)
@@ -43,7 +45,7 @@ namespace MovieRank.Libs.Repositories
 
         public async Task UpdateMovie(int userId, MovieUpdateRequest movieUpdateRequest, MovieResponse movieResponse, CancellationToken cancellationToken)
         {
-           var movieResponseToDbModel= _mapper.FromMovieResponseToDbModel(movieResponse, userId);
+            var movieResponseToDbModel = _mapper.FromMovieResponseToDbModel(movieResponse, userId);
 
             var request = _mapper.ToUpdateMovieDbModel(userId, movieUpdateRequest, movieResponseToDbModel);
 
@@ -55,10 +57,10 @@ namespace MovieRank.Libs.Repositories
 
             var config = new DynamoDBOperationConfig
             {
-                IndexName = "MovieName-index"
+                IndexName = IndexName
             };
 
-            var  movieDbs = await _dynamoDbContext.QueryAsync<MovieDb>(movieName, config).GetRemainingAsync(cancellationToken);
+            var movieDbs = await _dynamoDbContext.QueryAsync<MovieDb>(movieName, config).GetRemainingAsync(cancellationToken);
             return _mapper.ToMovieContract(movieDbs.AsEnumerable()).ToList();
         }
 
@@ -71,10 +73,10 @@ namespace MovieRank.Libs.Repositories
 
         public async Task<MovieResponse> GetMovie(int userId, string movieName, CancellationToken cancellationToken)
         {
-            var movieDb= await _dynamoDbContext.LoadAsync<MovieDb>(userId, movieName, cancellationToken);
+            var movieDb = await _dynamoDbContext.LoadAsync<MovieDb>(userId, movieName, cancellationToken);
             return _mapper.ToMovieContract(movieDb);
         }
 
-       
+
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using MovieRank.Contracts;
-using MovieRank.Libs.Models;
+using MovieRank.Infrastructure.Models;
 
-namespace MovieRank.Libs.Mappers
+namespace MovieRank.Infrastructure.Mappers
 {
     public class Mapper : IMapper
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using MovieRank.Contracts;
-using MovieRank.Libs.Models;
+using MovieRank.Infrastructure.Models;
 
-namespace MovieRank.Libs.Mappers
+namespace MovieRank.Infrastructure.Mappers
 {
     public interface IMapper
     {

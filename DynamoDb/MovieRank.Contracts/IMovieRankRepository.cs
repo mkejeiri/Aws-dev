@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using MovieRank.Contracts;
-using MovieRank.Libs.Models;
 
-namespace MovieRank.Libs.Repositories
+namespace MovieRank.Contracts
 {
     public interface IMovieRankRepository
     {
