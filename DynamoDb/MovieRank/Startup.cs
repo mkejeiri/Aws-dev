@@ -19,18 +19,34 @@ namespace MovieRank
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        private const string Uri = "http://localhost:8000";
+        private readonly IHostingEnvironment _environment;
+        public Startup(IHostingEnvironment environment)
+        {
+            _environment = environment;
+        }
+       
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
 
-            services.AddAWSService<IAmazonDynamoDB>();
-            services.AddDefaultAWSOptions(
-                new AWSOptions
+            //Use local DynamoDB for development
+            if (_environment.IsDevelopment())
+            {
+                services.AddScoped<IAmazonDynamoDB>(cc => new AmazonDynamoDBClient(new AmazonDynamoDBConfig()
                 {
-                    Region = RegionEndpoint.GetBySystemName("eu-central-1")
-                });
+                    ServiceURL = Uri
+                }));
+            }
+            else
+            {
+                services.AddAWSService<IAmazonDynamoDB>();
+                services.AddDefaultAWSOptions(
+                    new AWSOptions
+                    {
+                        Region = RegionEndpoint.GetBySystemName("eu-central-1")
+                    });
+            }
 
             //Operation over RankMovie table
             services.AddScoped<IMovieRankService, MovieRankService>();
@@ -38,7 +54,7 @@ namespace MovieRank
             //DDL Operations Creation and deletion of the table
             services.AddTransient<ISetupService, SetupService>();
 
-            
+
             //1- Persistence Object Model Approach
             //services.AddScoped<IMovieRankRepository, PersistenceObjectModelRepository>();
             //services.AddScoped<IMapper, Mapper>();

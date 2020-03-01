@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRank.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieRank.Contracts", "MovieRank.Contracts\MovieRank.Contracts.csproj", "{8B11B50A-61CD-4FE7-8C31-3C0C463A9080}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F953A46-FB0A-47F6-ADC5-3C4CFD637012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRank.Integration.Tests", "MovieRank.Integration.Tests\MovieRank.Integration.Tests.csproj", "{C45E13D2-1E7C-4D4A-8A9B-277375532991}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{8B11B50A-61CD-4FE7-8C31-3C0C463A9080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B11B50A-61CD-4FE7-8C31-3C0C463A9080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B11B50A-61CD-4FE7-8C31-3C0C463A9080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C45E13D2-1E7C-4D4A-8A9B-277375532991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C45E13D2-1E7C-4D4A-8A9B-277375532991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C45E13D2-1E7C-4D4A-8A9B-277375532991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C45E13D2-1E7C-4D4A-8A9B-277375532991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C45E13D2-1E7C-4D4A-8A9B-277375532991} = {7F953A46-FB0A-47F6-ADC5-3C4CFD637012}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {215E396D-F286-4224-AF24-23E2223BD8DB}
