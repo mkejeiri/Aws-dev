@@ -5,21 +5,21 @@ namespace MovieRank.Services
 {
     public class SetupService : ISetupService
     {
-        private readonly IDDLMovieRankRepository _movieRankRepositoryRespository;
+        private readonly IDDLMovieRankRepository _movieRankRepository;
 
-        public SetupService(IDDLMovieRankRepository movieRankRepositoryRespository)
+        public SetupService(IDDLMovieRankRepository movieRankRepository)
         {
-            _movieRankRepositoryRespository = movieRankRepositoryRespository;
+            _movieRankRepository = movieRankRepository;
         }
 
         public async Task CreateDynamoDbTable(string dynamoDbTableName)
         {
-            await _movieRankRepositoryRespository.CreateDynamoTable(dynamoDbTableName);
+            await _movieRankRepository.CreateDynamoTable(dynamoDbTableName);
         }
 
         public async Task DeleteDynamoDbTable(string dynamoDbTableName)
         {
-            await _movieRankRepositoryRespository.DeleteDynamoDbTable(dynamoDbTableName);
+            await _movieRankRepository.DeleteDynamoDbTable(dynamoDbTableName);
         }
     }
 }

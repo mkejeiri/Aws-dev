@@ -26,7 +26,6 @@ namespace MovieRank.Controllers
         public async Task<IActionResult> CreateDynamoDbTable(string dynamoDbTableName)
         {
             await _setupService.CreateDynamoDbTable(dynamoDbTableName);
-
             return Ok();
         }
         /// <summary>
@@ -41,7 +40,6 @@ namespace MovieRank.Controllers
         public async Task<IActionResult> DeleteTable(string dynamoDbTableName)
         {
             await _setupService.DeleteDynamoDbTable(dynamoDbTableName);
-
             return Ok();
         }
     }
