@@ -5,7 +5,7 @@
 
 Need to set up the following:
 - create a user and give it the appropriate right (using policies, for dev purposes I used AmazonDynamoDBFullAccess policy)
-- download user the credentials (csv file) and use aws configure command to be able to authenticate from your machine (this is use by the DynamoDB client to connect to the cloud)
+- download user the credentials (csv file) and use aws configure command to be able to authenticate from your machine (this is used by the DynamoDB client to connect to the cloud)
 - go the DynamoDB Dashboard and Create table with the following structure: 
 ssh`
 {
