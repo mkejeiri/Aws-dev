@@ -1,5 +1,5 @@
 
-# Aws development samples
+# Aws development example
 
 ### Prior settings  
 
